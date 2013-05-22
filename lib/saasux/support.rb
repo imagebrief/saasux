@@ -1,0 +1,1 @@
+require "saasux/support/formatter"

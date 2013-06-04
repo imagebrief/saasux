@@ -4,30 +4,26 @@ module SaasuX
     include HTTParty
     base_uri 'https://secure.saasu.com/webservices/rest/r1'
 
-    def initialize(config={})
-      @headers = {"Content-Type" => "application/xml"}
-      @config = config
-    end
+    attr_reader :config
 
-    def config
-      @config
+    def initialize(config={})
+      @config = config # {:query => {..}, :headers => {..}, :defaults => {..}}
     end
 
 
     ### Contacts
 
     def find_contact(contact_uid)
-      query = {:uid => contact_uid}.merge!(@config)
-      options = {:headers => @headers, :query => query}
+      # send request
+      headers = build_headers
+      query = build_query({:uid => contact_uid})
+      options = {:headers => headers, :query => query}
       httpresp = self.class.get("/Contact", options)
       response = SaasuX::ContactResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
-      
       return response
     end
 
     def insert_contact(contact)
-      query = {}.merge!(@config)
-
       # build request
       ic = SaasuX::InsertContact.new
       ic.contact = contact
@@ -35,8 +31,10 @@ module SaasuX
       tasks.insert_contact = ic
 
       # send request
+      headers = build_headers
+      query = build_query
       xml_str = SaasuX::Formatter.new.write(tasks.save_to_xml)
-      options = {:headers => @headers, :query => query, :body => xml_str}
+      options = {:headers => headers, :query => query, :body => xml_str}
       httpresp = self.class.post("/tasks", options)
       response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
 
@@ -62,20 +60,22 @@ module SaasuX
     ### Invoices
     
     def find_invoice(invoice_uid)
-      query = {:uid => invoice_uid, :incpayments => "true"}.merge!(@config)
-      options = {:headers => @headers, :query => query}
+      # send request
+      headers = build_headers
+      query = build_query({:uid => invoice_uid, :incpayments => "true"})
+      options = {:headers => headers, :query => query}
       httpresp = self.class.get("/Invoice", options)
       response = SaasuX::InvoiceResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
-
       return response
     end
     
 
     def pdf_invoice(invoice_uid)
-      query = {:uid => invoice_uid, :format => "pdf"}.merge!(@config)
-      options = {:headers => @headers, :query => query}
+      # send request
+      headers = build_headers
+      query = build_query({:uid => invoice_uid, :format => "pdf"})
+      options = {:headers => headers, :query => query}
       httpresp = self.class.get("/Invoice", options)
-
       return httpresp.body
     end
 
@@ -96,8 +96,10 @@ module SaasuX
       tasks.email_pdf_invoice = email_req
 
       # send request
+      headers = build_headers
+      query = build_query
       xml_str = SaasuX::Formatter.new.write(tasks.save_to_xml)
-      options = {:headers => @headers, :query => @config, :body => xml_str}
+      options = {:headers => headers, :query => query, :body => xml_str}
       httpresp = self.class.post("/tasks", options)
       response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
 
@@ -114,8 +116,10 @@ module SaasuX
       tasks.insert_invoice = ii
 
       # send request
+      headers = build_headers
+      query = build_query
       xml_str = SaasuX::Formatter.new.write(tasks.save_to_xml)
-      options = {:headers => @headers, :query => @config, :body => xml_str}      
+      options = {:headers => headers, :query => query, :body => xml_str}
       httpresp = self.class.post("/tasks", options)
       response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
 
@@ -129,7 +133,15 @@ module SaasuX
     # 
     # 
 
-    # protected
-    
+    protected
+   
+    def build_query(custom={})
+      custom.merge!(@config[:query])
+    end
+
+    def build_headers(custom={})
+      base_headers = @config[:headers] || {"Content-Type" => "application/xml"} # default value
+      custom.merge!(base_headers)
+    end
   end
 end

@@ -23,7 +23,6 @@ module SaasuX
     text_node :invoice_number, "invoiceNumber", :default_value => ""
 
     object_node :invoice_items, "invoiceItems", :class => InvoiceItems, :default_value => nil
-    # array_node :invoice_items, "invoiceItems", :default_value => []
     text_node :is_sent, "isSent", :default_value => ""
 
     object_node :trading_terms, "tradingTerms", :class => TradingTerms, :default_value => nil
@@ -31,6 +30,5 @@ module SaasuX
     text_node :total_amount_incl_tax, "totalAmountInclTax", :default_value => ""
     text_node :total_amount_excl_tax, "totalAmountExclTax", :default_value => ""
     text_node :total_tax_amount, "totalTaxAmount", :default_value => ""
-    
   end
 end

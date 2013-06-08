@@ -56,6 +56,19 @@ module SaasuX
     # 
     # end
 
+    # 
+    # Deletes the contact with the specified contact_uid.
+    #
+    def delete_contact(contact_uid)
+      # send request
+      headers = build_headers
+      query = build_query({:uid => contact_uid})
+      options = {:headers => headers, :query => query}
+      httpresp = self.class.delete("/Contact", options)
+      response = SaasuX::ContactResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
+      return response
+    end
+
 
     ### Invoices
     
@@ -68,28 +81,41 @@ module SaasuX
       response = SaasuX::InvoiceResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
       return response
     end
-    
 
-    def pdf_invoice(invoice_uid)
+    #
+    # Returns a PDF invoice as the response.
+    #
+    # Options:
+    #     - :template_uid   A custom template
+    #
+    def pdf_invoice(invoice_uid, options={})
       # send request
       headers = build_headers
       query = build_query({:uid => invoice_uid, :format => "pdf"})
+      query[:template_uid] = options[:template_uid] if options[:template_uid] # custom template
       options = {:headers => headers, :query => query}
       httpresp = self.class.get("/Invoice", options)
       return httpresp.body
     end
 
-
-    def email_pdf_invoice(invoice_uid, message={})
+    #
+    # Delivers an invoice in PDF format using the Saasu platform.
+    #
+    # Options:
+    #     - :template_uid   A custom template
+    def email_pdf_invoice(invoice_uid, options={})
       # build request
       email_msg = SaasuX::EmailMessage.new
-      email_msg.to = message[:to] || "dev@imagebrief.com"
-      email_msg.from = message[:from] || "dev@imagebrief.com"
-      email_msg.subject = message[:subject] || "Your invoice from Imagebrief"
+      email_msg.from      = options[:from] || "accounts@imagebrief.com"
+      email_msg.to        = options[:to] || "dev@imagebrief.com"
+      email_msg.cc        = options[:cc]
+      email_msg.bcc       = options[:bcc]
+      email_msg.subject   = options[:subject] || "Your invoice from Imagebrief"
+      email_msg.body      = options[:body]
 
       email_req = SaasuX::EmailPdfInvoice.new
       email_req.invoice_uid = invoice_uid
-      # email_req.template_uid = XXX
+      email_req.template_uid = options[:template_uid] if options[:template_uid]
       email_req.email_message = email_msg
 
       tasks = SaasuX::Tasks.new
@@ -126,12 +152,23 @@ module SaasuX
       return response
     end
 
-
-
     # def update_invoice(invoice, options={})
     # end
     # 
     # 
+
+    # 
+    # Deletes the invoice with the specified invoice_uid.
+    #
+    def delete_invoice(invoice_uid)
+      # send request
+      headers = build_headers
+      query = build_query({:uid => invoice_uid})
+      options = {:headers => headers, :query => query}
+      httpresp = self.class.delete("/Invoice", options)
+      response = SaasuX::InvoiceResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
+      return response
+    end
 
     protected
    

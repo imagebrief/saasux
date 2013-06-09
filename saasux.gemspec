@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "saasux"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Peterson"]
@@ -51,6 +51,8 @@ Gem::Specification.new do |s|
     "lib/saasux/messages/tasks_response.rb",
     "lib/saasux/messages/update_contact.rb",
     "lib/saasux/messages/update_contact_result.rb",
+    "lib/saasux/messages/update_invoice.rb",
+    "lib/saasux/messages/update_invoice_result.rb",
     "lib/saasux/support.rb",
     "lib/saasux/support/formatter.rb",
     "saasux.gemspec"

@@ -1,5 +1,5 @@
 module SaasuX
-  class DeleteContactResult
+  class DeleteResult
     include XML::Mapping
 
     text_node :uid, "@uid", :default_value => ""

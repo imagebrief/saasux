@@ -20,15 +20,14 @@ require "saasux/messages/error"
 require "saasux/messages/errors"
 
 require "saasux/messages/insert_invoice_result"
-require "saasux/messages/delete_invoice_result"
+require "saasux/messages/email_pdf_invoice_result"
 
 require "saasux/messages/insert_contact_result"
 require "saasux/messages/update_contact_result"
-require "saasux/messages/delete_contact_result"
+
+require "saasux/messages/delete_result"
 
 require "saasux/messages/contact_response"
 require "saasux/messages/invoice_response"
-
-require "saasux/messages/email_pdf_invoice_result"
 
 require "saasux/messages/tasks_response"

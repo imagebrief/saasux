@@ -25,10 +25,10 @@ module SaasuX
 
     def insert_contact(contact)
       # build request
-      ic = SaasuX::InsertContact.new
-      ic.contact = contact
+      insert_contact = SaasuX::InsertContact.new
+      insert_contact.contact = contact
       tasks = SaasuX::Tasks.new
-      tasks.insert_contact = ic
+      tasks.insert_contact = insert_contact
 
       # send request
       headers = build_headers
@@ -41,20 +41,23 @@ module SaasuX
       return response
     end
     
-    # def update_contact(contact, options={})
-    #   
-    #   # .. PREPARE options etc
-    #   
-    #   httpresp = self.class.post("/updateContact", options)
-    #   response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
-    #   
-    #   if response.errors.nil? && !response.update_contact_result.nil?
-    #     return response.update_contact_result
-    #   else
-    #     return nil
-    #   end
-    # 
-    # end
+    def update_contact(contact)
+      # build request
+      update_contact = SaasuX::UpdateContact.new
+      update_contact.contact = contact
+      tasks = SaasuX::Tasks.new
+      tasks.insert_contact = update_contact
+
+      # send request
+      headers = build_headers
+      query = build_query
+      xml_str = SaasuX::Formatter.new.write(tasks.save_to_xml)
+      options = {:headers => headers, :query => query, :body => xml_str}
+      httpresp = self.class.post("/tasks", options)
+      response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
+
+      return response
+    end
 
     # 
     # Deletes the contact with the specified contact_uid.
@@ -135,11 +138,11 @@ module SaasuX
 
     def insert_invoice(invoice)
       # build request
-      ii = SaasuX::InsertInvoice.new
-      ii.email_to_contact = false
-      ii.invoice = invoice
+      insert_invoice = SaasuX::InsertInvoice.new
+      insert_invoice.email_to_contact = false
+      insert_invoice.invoice = invoice
       tasks = SaasuX::Tasks.new
-      tasks.insert_invoice = ii
+      tasks.insert_invoice = insert_invoice
 
       # send request
       headers = build_headers
@@ -152,10 +155,25 @@ module SaasuX
       return response
     end
 
-    # def update_invoice(invoice, options={})
-    # end
-    # 
-    # 
+
+    def update_invoice(invoice)
+      update_invoice = SaasuX::UpdateInvoice.new
+      update_invoice.email_to_contact = false
+      update_invoice.invoice = invoice
+      tasks = SaasuX::Tasks.new
+      tasks.update_invoice = update_invoice
+
+      # send request
+      headers = build_headers
+      query = build_query
+      xml_str = SaasuX::Formatter.new.write(tasks.save_to_xml)
+      options = {:headers => headers, :query => query, :body => xml_str}
+      httpresp = self.class.post("/tasks", options)
+      response = SaasuX::TasksResponse.load_from_xml(REXML::Document.new(httpresp.body).root)
+
+      return response
+    end
+    
 
     # 
     # Deletes the invoice with the specified invoice_uid.

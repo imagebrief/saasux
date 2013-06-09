@@ -3,7 +3,7 @@ module SaasuX
     include XML::Mapping
     
     text_node :uid, "@uid", :default_value => ""
-    text_node :last_updated_uid, "lastUpdatedUid", :default_value => ""
+    text_node :last_updated_uid, "@lastUpdatedUid", :default_value => ""
     
     text_node :utc_first_created, "utcFirstCreated", :default_value => ""
     text_node :utc_last_modified, "utcLastModified", :default_value => ""

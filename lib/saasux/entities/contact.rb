@@ -3,6 +3,8 @@ module SaasuX
     include XML::Mapping
     
     text_node :uid, "@uid", :default_value => ""
+    text_node :last_updated_uid, "@lastUpdatedUid", :default_value => ""
+
     text_node :salutation, "salutation", :default_value => ""
     text_node :given_name, "givenName", :default_value => ""
     text_node :family_name, "familyName", :default_value => ""

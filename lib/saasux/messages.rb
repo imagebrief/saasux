@@ -6,8 +6,9 @@
 ###
 require "saasux/messages/insert_contact"
 require "saasux/messages/update_contact"
-require "saasux/messages/insert_invoice"
 
+require "saasux/messages/insert_invoice"
+require "saasux/messages/update_invoice"
 require "saasux/messages/email_pdf_invoice"
 
 require "saasux/messages/tasks"
@@ -20,6 +21,7 @@ require "saasux/messages/error"
 require "saasux/messages/errors"
 
 require "saasux/messages/insert_invoice_result"
+require "saasux/messages/update_invoice_result"
 require "saasux/messages/email_pdf_invoice_result"
 
 require "saasux/messages/insert_contact_result"

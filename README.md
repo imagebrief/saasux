@@ -2,10 +2,17 @@
 
 A Ruby XML interface to the Saasu API.
 
+Please note that this client API is substantially incomplete. Method names are
+also subject to change as this interface is further developed.
+
+## Usage
+
 ## Installation
 
-    gem install saasux
-    
-## Copyright
+## Contributing
 
-Copyright (c) 2012 David Peterson. See LICENSE for details.
+## Credits
+
+## License
+
+SaasuX is released under the MIT Licence. See the bundled LICENSE file for details.

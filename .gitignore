@@ -11,3 +11,4 @@ pkg
 tmtags
 *.swp
 *.sublime-*
+.ruby-*

@@ -33,15 +33,6 @@ def symbolize_keys(hash)
   }
 end
 
-# VCR configuration
-VCR.configure do |c|
-  c.cassette_library_dir = 'vcr/saasu'
-  c.hook_into :webmock
-  # c.filter_sensitive_data('<WSACCESSKEY>') { 'wsaccesskey' }
-  # c.filter_sensitive_data('<FILEUID>') { 'fileuid' }
-end
-
-
 # Load YAML file and symbolize hash keys
 saasu_config = symbolize_keys(YAML.load_file("spec/saasu.yml"))
 
@@ -49,4 +40,14 @@ saasu_config = symbolize_keys(YAML.load_file("spec/saasu.yml"))
 RSpec.configure do |config|
   config.add_setting :saasu_config
   config.saasu_config = saasu_config
+end
+
+# VCR configuration
+VCR.configure do |c|
+  c.cassette_library_dir = 'vcr/saasu'
+  c.hook_into :webmock
+
+  # filter sensitive fields from vcr cassettes
+  c.filter_sensitive_data('<WSACCESSKEY>') { RSpec.configuration.saasu_config[:query][:wsaccesskey] }
+  c.filter_sensitive_data('<FILEUID>') {  RSpec.configuration.saasu_config[:query][:fileuid] }
 end

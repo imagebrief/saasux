@@ -1,0 +1,30 @@
+<contact uid="3941664" lastUpdatedUid="AAAAABNPVq0=">
+  <utcFirstCreated>2012-08-30T05:33:12</utcFirstCreated>
+  <utcLastModified>2012-08-30T05:33:12</utcLastModified>
+  <givenName>John</givenName>
+  <familyName>King</familyName>
+  <organisationUid>1586497</organisationUid>
+  <organisationName>John King Enterprise</organisationName>
+  <contactID>501f188d421aa961f200000d</contactID>
+  <websiteUrl>http://localhost:3000/profiles/john4112</websiteUrl>
+  <email>johnking@briefly.com</email>
+  <mainPhone>88 81191818</mainPhone>
+  <postalAddress>
+    <street>42826 Fenner Ave.</street>
+    <city>Los Angeles</city>
+    <state>CA</state>
+    <postCode>90001</postCode>
+    <country>USA</country>
+  </postalAddress>
+  <otherAddress />
+  <isActive>true</isActive>
+  <acceptDirectDeposit>false</acceptDirectDeposit>
+  <acceptCheque>false</acceptCheque>
+  <tags>image buyer</tags>
+  <autoSendStatement>true</autoSendStatement>
+  <isPartner>false</isPartner>
+  <isCustomer>false</isCustomer>
+  <isSupplier>false</isSupplier>
+  <defaultSaleDiscount>0.0</defaultSaleDiscount>
+  <defaultPurchaseDiscount>0.0</defaultPurchaseDiscount>
+</contact>

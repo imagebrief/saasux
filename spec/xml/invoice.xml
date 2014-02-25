@@ -1,0 +1,52 @@
+<invoice uid="20808250" lastUpdatedUid="AAAAABNPVrY=">
+  <utcFirstCreated>2012-08-30T05:33:15</utcFirstCreated>
+  <utcLastModified>2012-08-30T05:33:15</utcLastModified>
+  <transactionType>S</transactionType>
+  <date>2012-08-30</date>
+  <contactUid>3941664</contactUid>
+  <summary>Image purchase</summary>
+  <tags>paypal</tags>
+  <ccy>USD</ccy>
+  <autoPopulateFxRate>true</autoPopulateFxRate>
+  <fcToBcFxRate>0.9637017094</fcToBcFxRate>
+  <requiresFollowUp>false</requiresFollowUp>
+  <dueOrExpiryDate>2012-09-29</dueOrExpiryDate>
+  <layout>S</layout>
+  <status>I</status>
+  <invoiceType>Tax Invoice</invoiceType>
+  <invoiceNumber>106</invoiceNumber>
+  <invoiceItems>
+    <serviceInvoiceItem>
+      <description>Sample Item</description>
+      <accountUid>577317</accountUid>
+      <taxCode>G1,G3</taxCode>
+      <totalAmountInclTax>5000.0000</totalAmountInclTax>
+      <totalAmountExclTax>5000.0000</totalAmountExclTax>
+      <totalTaxAmount>0.0000</totalTaxAmount>
+    </serviceInvoiceItem>
+  </invoiceItems>
+  <payments>
+    <payment>
+      <invoicePaymentUid>34267292</invoicePaymentUid>
+      <paymentDate>2012-09-14</paymentDate>
+      <ccy>USD</ccy>
+      <autoPopulateFxRate>false</autoPopulateFxRate>
+      <fcToBcFxRate>1.0400300000</fcToBcFxRate>
+      <reference>ref123456</reference>
+      <summary>Payment via some way</summary>
+      <bankAccountUid>577293</bankAccountUid>
+      <amount>5000.0000</amount>
+    </payment>
+  </payments>
+  <isSent>false</isSent>
+  <tradingTerms>
+    <type>0</type>
+    <interval>0</interval>
+    <intervalType>0</intervalType>
+    <typeEnum>Unspecified</typeEnum>
+    <intervalTypeEnum>Unspecified</intervalTypeEnum>
+  </tradingTerms>
+  <totalAmountInclTax>5000.0000</totalAmountInclTax>
+  <totalAmountExclTax>5000.0000</totalAmountExclTax>
+  <totalTaxAmount>0.0000</totalTaxAmount>
+</invoice>

@@ -26,9 +26,8 @@ class InvoiceHelper
     invoice.summary = "Test sale"
     invoice.tags = "sale"
 
-    # invoice.ccy = "USD"
-    # invoice.auto_populate_fx_rate = true
-    # invoice.fc_to_bc_fx_rate = "1.0000"
+    invoice.ccy = "USD"
+    invoice.auto_populate_fx_rate = true
 
     invoice.due_or_expiry_date = "2013-07-01"
     invoice.layout = "S"

@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
     "lib/saasux/entities/invoice_items.rb",
     "lib/saasux/entities/invoice_payment.rb",
     "lib/saasux/entities/item_invoice_item.rb",
+    "lib/saasux/entities/quick_payment.rb",
     "lib/saasux/entities/service_invoice_item.rb",
     "lib/saasux/entities/trading_terms.rb",
     "lib/saasux/messages.rb",

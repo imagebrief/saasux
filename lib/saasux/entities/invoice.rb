@@ -1,10 +1,10 @@
 module SaasuX
   class Invoice
     include XML::Mapping
-    
+
     text_node :uid, "@uid", :default_value => ""
     text_node :last_updated_uid, "@lastUpdatedUid", :default_value => ""
-    
+
     text_node :utc_first_created, "utcFirstCreated", :default_value => ""
     text_node :utc_last_modified, "utcLastModified", :default_value => ""
     text_node :transaction_type, "transactionType", :default_value => ""
@@ -31,9 +31,9 @@ module SaasuX
 
     object_node :trading_terms, "tradingTerms", :class => TradingTerms, :default_value => nil
 
+    object_node :quick_payment, "quickPayment", :class => QuickPayment, :default_value => nil
+
     # Payments
     array_node :payments, "payments", "payment", :class => InvoicePayment, :default_value => []
-    # FIXME to be implemented
-    #object_node :quick_payment, "quickPayment", :class => QuickPayment, :default_value => nil
   end
 end

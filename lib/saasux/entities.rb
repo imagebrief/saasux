@@ -6,6 +6,7 @@ require "saasux/entities/item_invoice_item"
 require "saasux/entities/invoice_items"
 
 require "saasux/entities/invoice_payment"
+require "saasux/entities/quick_payment"
 
 require "saasux/entities/trading_terms"
 require "saasux/entities/invoice"

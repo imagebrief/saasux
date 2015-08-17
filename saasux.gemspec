@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/saasux/entities/email_message.rb",
     "lib/saasux/entities/invoice.rb",
     "lib/saasux/entities/invoice_items.rb",
+    "lib/saasux/entities/invoice_payment.rb",
     "lib/saasux/entities/item_invoice_item.rb",
     "lib/saasux/entities/service_invoice_item.rb",
     "lib/saasux/entities/trading_terms.rb",
@@ -96,4 +97,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<webmock>, ["~> 1.8.10"])
   end
 end
-
